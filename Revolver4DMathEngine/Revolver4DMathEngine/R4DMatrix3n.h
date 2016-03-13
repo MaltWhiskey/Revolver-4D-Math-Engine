@@ -108,7 +108,7 @@ namespace R4DEngine {
          *
          *  @return new transform vector
          */
-        R4DVector3n transform(const R4DVector3n& v) const;
+        R4DVector3n transformVectorByMatrix(const R4DVector3n& v) const;
         
 #pragma mark-matrix multiplication
         /**
@@ -129,9 +129,9 @@ namespace R4DEngine {
         
 #pragma mark-matrix identity
         /*!
-         *  @brief  set matrix to identity
+         *  @brief  set current matrix as identity matrix
          */
-        void setIdentity();
+        void setMatrixAsIdentityMatrix();
         
         
 #pragma mark-matrix inverse
@@ -140,19 +140,19 @@ namespace R4DEngine {
          *
          *  @param m matrix
          */
-        void setInverse(const R4DMatrix3n& m);
+        void setMatrixAsInverseOfGivenMatrix(const R4DMatrix3n& m);
         
         /**
          *  returns a new matrix containing the inverse of the matrix
          *
          *  @return Matrix inverse
          */
-        R4DMatrix3n inverse() const;
+        R4DMatrix3n getInverseOfMatrix() const;
         
         /**
          *  Inverts the matrix
          */
-        void invert();
+        void invertMatrix();
         
 #pragma mark-matrix determinant
         /**
@@ -160,7 +160,7 @@ namespace R4DEngine {
          *
          *  @return matrix determinant
          */
-        float getDeterminant() const;
+        float getMatrixDeterminant() const;
         
 #pragma mark-matrix transpose
         /**
@@ -168,21 +168,44 @@ namespace R4DEngine {
          *
          *  @param m matrix
          */
-        void setTranspose(const R4DMatrix3n& m);
+        void setMatrixAsTransposeOfGivenMatrix(const R4DMatrix3n& m);
         
         /**
          *  Transpose the matrix
          *
          *  @return matrix transpose
          */
-        R4DMatrix3n transpose() const;
+        R4DMatrix3n getTransposeOfMatrix() const;
         
         
 #pragma mark-invert and transpose the matrix
         /**
          *  Inverts and transpose the matrix
          */
-        void invertAndTranspose();
+        void invertAndTransposeMatrix();
+        
+        
+#pragma mark-Transform matrix about axis
+        /*!
+         *  @brief  transform matrix about x axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void transformMatrixAboutXAxis(float uAngle);
+        
+        /*!
+         *  @brief  transform matrix about y axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void transformMatrixAboutYAxis(float uAngle);
+        
+        /*!
+         *  @brief  transform matrix about z axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void transformMatrixAboutZAxis(float uAngle);
         
 #pragma mark-debug
         /**

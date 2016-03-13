@@ -7,6 +7,7 @@
 //
 
 #include "R4DMatrix3n.h"
+#include "Constants.h"
 
 namespace R4DEngine {
     
@@ -178,7 +179,7 @@ namespace R4DEngine {
     }
     
     
-    R4DVector3n R4DMatrix3n::transform(const R4DVector3n& v) const{
+    R4DVector3n R4DMatrix3n::transformVectorByMatrix(const R4DVector3n& v) const{
         
         return (*this)*v;
     }
@@ -249,7 +250,7 @@ namespace R4DEngine {
     
 #pragma mark-matrix identity
     
-    void R4DMatrix3n::setIdentity(){
+    void R4DMatrix3n::setMatrixAsIdentityMatrix(){
         
         for (int i=0; i<9; i++) {
             matrixData[i]=0.0f;
@@ -262,7 +263,7 @@ namespace R4DEngine {
     
 #pragma mark-matrix inverse
     
-    void R4DMatrix3n::setInverse(const R4DMatrix3n& m){
+    void R4DMatrix3n::setMatrixAsInverseOfGivenMatrix(const R4DMatrix3n& m){
      
         // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
@@ -317,22 +318,22 @@ namespace R4DEngine {
     }
     
     
-    R4DMatrix3n R4DMatrix3n::inverse() const{
+    R4DMatrix3n R4DMatrix3n::getInverseOfMatrix() const{
         
         R4DMatrix3n result;
-        result.setInverse(*this);
+        result.setMatrixAsInverseOfGivenMatrix(*this);
         return result;
     }
     
 
-    void R4DMatrix3n::invert(){
+    void R4DMatrix3n::invertMatrix(){
         
-        setInverse(*this);
+        setMatrixAsInverseOfGivenMatrix(*this);
     }
     
 #pragma mark-matrix determinant
     
-    float R4DMatrix3n::getDeterminant() const{
+    float R4DMatrix3n::getMatrixDeterminant() const{
         
         // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
@@ -355,7 +356,7 @@ namespace R4DEngine {
     
 #pragma mark-matrix transpose
     
-    void R4DMatrix3n::setTranspose(const R4DMatrix3n& m){
+    void R4DMatrix3n::setMatrixAsTransposeOfGivenMatrix(const R4DMatrix3n& m){
         
         //3x3 Matrix
         //	0	3	6
@@ -382,10 +383,10 @@ namespace R4DEngine {
     }
     
     
-    R4DMatrix3n R4DMatrix3n::transpose() const{
+    R4DMatrix3n R4DMatrix3n::getTransposeOfMatrix() const{
         
         R4DMatrix3n result;
-        result.setTranspose(*this);
+        result.setMatrixAsTransposeOfGivenMatrix(*this);
         return result;
         
     }
@@ -393,7 +394,7 @@ namespace R4DEngine {
     
 #pragma mark-invert and transpose the matrix
     
-    void R4DMatrix3n::invertAndTranspose(){
+    void R4DMatrix3n::invertAndTransposeMatrix(){
      
         //3x3 Matrix
         //	0	3	6
@@ -480,6 +481,58 @@ namespace R4DEngine {
         matrixData[6]=preResult.matrixData[2];
         matrixData[7]=preResult.matrixData[5];
         matrixData[8]=preResult.matrixData[8];
+    }
+    
+#pragma mark-Transform matrix about axis
+
+    void R4DMatrix3n::transformMatrixAboutXAxis(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        
+        R4DMatrix3n m(1.0,0.0,0.0,
+                      0.0,cos(uAngle),-sin(uAngle),
+                      0.0,sin(uAngle),cos(uAngle));
+        
+        *this=m*(*this);
+        
+    }
+    
+    void R4DMatrix3n::transformMatrixAboutYAxis(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        
+        R4DMatrix3n m(cos(uAngle),0.0,sin(uAngle),
+                      0.0,1.0,0.0,
+                      -sin(uAngle),0.0,cos(uAngle));
+        
+        *this=m*(*this);
+        
+    }
+    
+    void R4DMatrix3n::transformMatrixAboutZAxis(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        
+        R4DMatrix3n m(cos(uAngle),-sin(uAngle),0.0,
+                      sin(uAngle),cos(uAngle),0.0,
+                      0.0,0.0,1.0);
+        
+        *this=m*(*this);
     }
     
 #pragma mark-debug
