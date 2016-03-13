@@ -185,27 +185,51 @@ namespace R4DEngine {
         void invertAndTransposeMatrix();
         
         
-#pragma mark-Transform matrix about axis
+#pragma mark-make rotation matrix about axis
+        /*!
+         *  @brief  make rotation matrix about x axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void makeRotationMatrixAboutXAxisByAngle(float uAngle);
+        
+        /*!
+         *  @brief  make rotation matrix about y axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void makeRotationMatrixAboutYAxisByAngle(float uAngle);
+        
+        /*!
+         *  @brief  make rotation matrix about z axis
+         *
+         *  @param uAngle angle of rotation
+         */
+        void makeRotationMatrixAboutZAxisByAngle(float uAngle);
+        
+#pragma mark-transform matrix about axis
+        
         /*!
          *  @brief  transform matrix about x axis
          *
          *  @param uAngle angle of rotation
          */
-        void transformMatrixAboutXAxis(float uAngle);
+        void transformMatrixAboutXAxisByAngle(float uAngle);
         
         /*!
          *  @brief  transform matrix about y axis
          *
          *  @param uAngle angle of rotation
          */
-        void transformMatrixAboutYAxis(float uAngle);
+        void transformMatrixAboutYAxisByAngle(float uAngle);
         
         /*!
          *  @brief  transform matrix about z axis
          *
          *  @param uAngle angle of rotation
          */
-        void transformMatrixAboutZAxis(float uAngle);
+        void transformMatrixAboutZAxisByAngle(float uAngle);
+        
         
 #pragma mark-debug
         /**

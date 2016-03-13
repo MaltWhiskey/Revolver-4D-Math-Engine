@@ -485,7 +485,63 @@ namespace R4DEngine {
     
 #pragma mark-Transform matrix about axis
 
-    void R4DMatrix3n::transformMatrixAboutXAxis(float uAngle){
+    void R4DMatrix3n::makeRotationMatrixAboutXAxisByAngle(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        
+        (*this).setMatrixAsIdentityMatrix();
+        
+        R4DMatrix3n m(1.0,0.0,0.0,
+                      0.0,cos(uAngle),-sin(uAngle),
+                      0.0,sin(uAngle),cos(uAngle));
+        
+        *this=m*(*this);
+        
+    }
+    
+    void R4DMatrix3n::makeRotationMatrixAboutYAxisByAngle(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        (*this).setMatrixAsIdentityMatrix();
+        
+        R4DMatrix3n m(cos(uAngle),0.0,sin(uAngle),
+                      0.0,1.0,0.0,
+                      -sin(uAngle),0.0,cos(uAngle));
+        
+        *this=m*(*this);
+        
+    }
+    
+    void R4DMatrix3n::makeRotationMatrixAboutZAxisByAngle(float uAngle){
+        
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
+        //	0	3	6
+        //	1	4	7
+        //	2	5	8
+        
+        uAngle=DegreesToRad(uAngle);
+        (*this).setMatrixAsIdentityMatrix();
+        
+        R4DMatrix3n m(cos(uAngle),-sin(uAngle),0.0,
+                      sin(uAngle),cos(uAngle),0.0,
+                      0.0,0.0,1.0);
+        
+        *this=m*(*this);
+    }
+    
+#pragma mark-transform matrix by axis
+    
+    void R4DMatrix3n::transformMatrixAboutXAxisByAngle(float uAngle){
         
         // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
@@ -502,7 +558,7 @@ namespace R4DEngine {
         
     }
     
-    void R4DMatrix3n::transformMatrixAboutYAxis(float uAngle){
+    void R4DMatrix3n::transformMatrixAboutYAxisByAngle(float uAngle){
         
         // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
@@ -517,9 +573,10 @@ namespace R4DEngine {
         
         *this=m*(*this);
         
+        
     }
     
-    void R4DMatrix3n::transformMatrixAboutZAxis(float uAngle){
+    void R4DMatrix3n::transformMatrixAboutZAxisByAngle(float uAngle){
         
         // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
@@ -535,9 +592,11 @@ namespace R4DEngine {
         *this=m*(*this);
     }
     
+    
 #pragma mark-debug
     void R4DMatrix3n::show(){
         
+        // 3x3 matrix - column major. X vector is 0, 1, 2, etc. (openGL prefer way)
         //	0	3	6
         //	1	4	7
         //	2	5	8

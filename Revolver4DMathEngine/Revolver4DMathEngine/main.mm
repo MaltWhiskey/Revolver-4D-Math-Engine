@@ -12,14 +12,15 @@
 
 int main(int argc, const char * argv[]) {
     
-    R4DEngine::R4DMatrix3n m(2,1,4,
-                             3,4,1,
-                             2,1,1);
+    R4DEngine::R4DMatrix3n m;
     
-    R4DEngine::R4DMatrix3n n=m.transpose();
+    R4DEngine::R4DVector3n v(1,0,0);
     
+    m.makeRotationMatrixAboutYAxisByAngle(90.0);
     
-    n.show();
+    R4DEngine::R4DVector3n newVector=m.transformVectorByMatrix(v);
+    
+    newVector.show();
     
     return 0;
 }
