@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0325D2221C880F9A00F1B9BE /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0325D2211C880F9A00F1B9BE /* main.mm */; };
 		0325D22A1C88107A00F1B9BE /* R4DVector3n.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0325D2281C88107A00F1B9BE /* R4DVector3n.mm */; settings = {ASSET_TAGS = (); }; };
+		0325D2341C94FB1800F1B9BE /* R4DMatrix3n.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0325D2331C94FB1800F1B9BE /* R4DMatrix3n.mm */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,8 @@
 		0325D2281C88107A00F1B9BE /* R4DVector3n.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4DVector3n.mm; sourceTree = "<group>"; };
 		0325D2291C88107A00F1B9BE /* R4DVector3n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DVector3n.h; sourceTree = "<group>"; };
 		0325D22B1C88814700F1B9BE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		0325D2321C94FB1800F1B9BE /* R4DMatrix3n.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = R4DMatrix3n.h; sourceTree = "<group>"; };
+		0325D2331C94FB1800F1B9BE /* R4DMatrix3n.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = R4DMatrix3n.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				0325D22B1C88814700F1B9BE /* Constants.h */,
+				0325D2321C94FB1800F1B9BE /* R4DMatrix3n.h */,
+				0325D2331C94FB1800F1B9BE /* R4DMatrix3n.mm */,
 				0325D2291C88107A00F1B9BE /* R4DVector3n.h */,
 				0325D2281C88107A00F1B9BE /* R4DVector3n.mm */,
 				0325D2211C880F9A00F1B9BE /* main.mm */,
@@ -126,6 +131,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0325D22A1C88107A00F1B9BE /* R4DVector3n.mm in Sources */,
+				0325D2341C94FB1800F1B9BE /* R4DMatrix3n.mm in Sources */,
 				0325D2221C880F9A00F1B9BE /* main.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +249,7 @@
 				0325D2271C880F9A00F1B9BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
