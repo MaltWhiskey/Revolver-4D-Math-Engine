@@ -35,7 +35,7 @@ namespace R4DEngine {
     };
     
 
-    inline R4DQuaternion& R4DQuaternion::operator=(const R4DQuaternion& value){
+    R4DQuaternion& R4DQuaternion::operator=(const R4DQuaternion& value){
         
         s=value.s;
         v=value.v;
