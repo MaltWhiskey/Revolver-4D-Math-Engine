@@ -7,6 +7,7 @@
 //
 
 #include "R4DVector3n.h"
+#include "R4DQuaternion.h"
 #include "Constants.h"
 
 namespace R4DEngine {
@@ -203,6 +204,31 @@ namespace R4DEngine {
         x=std::abs(x);
         y=std::abs(y);
         z=std::abs(z);
+        
+    }
+    
+#pragma mark-Rotate a vector about an angle using quaternions
+    
+    R4DVector3n R4DVector3n::rotateVectorAboutAngleAndAxis(float uAngle, R4DVector3n& uAxis){
+        
+        //convert our vector to a pure quaternion
+        
+        R4DQuaternion p(0,(*this));
+        
+        //normalize the axis
+        uAxis.normalize();
+        
+        //create the real quaternion
+        R4DQuaternion q(uAngle,uAxis);
+        
+        //convert quaternion to unit norm quaternion
+        q.convertToUnitNormQuaternion();
+        
+        R4DQuaternion qInverse=q.inverse();
+        
+        R4DQuaternion rotatedVector=q*p*qInverse;
+        
+        return rotatedVector.v;
         
     }
  

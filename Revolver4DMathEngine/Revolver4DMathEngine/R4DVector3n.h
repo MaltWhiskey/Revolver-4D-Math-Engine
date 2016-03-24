@@ -285,6 +285,16 @@ namespace R4DEngine {
          */
         void absolute();
         
+        /**
+         @brief Rotate a vector about an angle using quaternions
+         
+         @param uAngle angle to rotate
+         @param uAxis  axis to rotate about
+         
+         @return Vector rotation
+         */
+        R4DVector3n rotateVectorAboutAngleAndAxis(float uAngle, R4DVector3n& uAxis);
+        
         /*!
          *  @brief  Print vector components
          *
